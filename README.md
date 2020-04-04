@@ -1,13 +1,13 @@
 # iterm2 rz与sz的功能
 
 本文主要介绍`mac`环境下使用`iterm2`的`rzsz`功能的安装流程。
-> tips: 这两个文件本人也找了好久，有用的话请不要吝啬star，谢谢！
 
 ## 1. 安装lrzsz
 
 ```bash
 brew install lrzsz #可以在等待安装的过程中执行第2步
 ```
+> brew的安装很简单，请自行百度
 
 ## 2. 安装执行脚本
 
