@@ -11,6 +11,15 @@
 # AppleScript from http://stackoverflow.com/questions/4309087/cancel-button-on-osascript-in-a-bash-script
 # licensed under cc-wiki with attribution required 
 # Remainder of script public domain
+
+#COMMAND=$(which sz)
+
+if [[ -f /opt/homebrew/bin/sz ]]; then
+	COMMAND=/opt/homebrew/bin/sz
+else
+	COMMAND=/usr/local/bin/sz
+fi
+
 osascript -e 'tell application "iTerm2" to version' > /dev/null 2>&1 && NAME=iTerm2 || NAME=iTerm
 if [[ $NAME = "iTerm" ]]; then
     FILE=$(osascript -e 'tell application "iTerm" to activate' -e 'tell application "iTerm" to set thefile to choose file with prompt "Choose a file to send"' -e "do shell script (\"echo \"&(quoted form of POSIX path of thefile as Unicode text)&\"\")")
@@ -25,7 +34,7 @@ if [[ $FILE = "" ]]; then
     echo
     echo \# Cancelled transfer
 else
-    /usr/local/bin/sz "$FILE" --escape --binary --bufsize 4096
+    $COMMAND "$FILE" --escape --binary --bufsize 4096
     sleep 1
     echo
     echo \# Received "$FILE"
